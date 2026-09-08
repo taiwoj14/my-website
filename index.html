@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins Documentation</title>
+
+```
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background: #f4f6f8;
+        color: #333;
+    }
+
+    header {
+        background: #1f2937;
+        color: white;
+        padding: 30px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin-bottom: 10px;
+    }
+
+    header p {
+        color: #d1d5db;
+    }
+
+    nav {
+        background: #111827;
+        padding: 15px;
+        text-align: center;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    section {
+        background: white;
+        margin-bottom: 25px;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+        color: #b91c1c;
+        margin-bottom: 15px;
+    }
+
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        margin-left: 25px;
+    }
+
+    code {
+        background: #e5e7eb;
+        padding: 3px 6px;
+        border-radius: 4px;
+    }
+
+    pre {
+        background: #111827;
+        color: #f9fafb;
+        padding: 15px;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin: 15px 0;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .card {
+        background: #f9fafb;
+        padding: 20px;
+        border-left: 5px solid #b91c1c;
+        border-radius: 5px;
+    }
+
+    .card h3 {
+        margin-top: 0;
+    }
+
+    footer {
+        background: #1f2937;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+        nav a {
+            display: block;
+            margin: 8px 0;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header>
+    <h1>Jenkins Documentation</h1>
+    <p>A beginner-friendly guide to Jenkins and CI/CD automation</p>
+</header>
+
+<nav>
+    <a href="#introduction">Introduction</a>
+    <a href="#installation">Installation</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#docker">Docker</a>
+    <a href="#commands">Commands</a>
+</nav>
+
+<div class="container">
+
+```
+<section id="introduction">
+    <h2>1. Introduction to Jenkins</h2>
+
+    <p>
+        Jenkins is an open-source automation server commonly used to
+        implement Continuous Integration and Continuous Delivery (CI/CD).
+    </p>
+
+    <div class="card-container">
+
+        <div class="card">
+            <h3>Continuous Integration</h3>
+            <p>
+                Automatically builds and tests applications whenever
+                developers push changes to a repository.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Continuous Delivery</h3>
+            <p>
+                Automates the process of preparing an application for
+                release.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Automation</h3>
+            <p>
+                Jenkins can automate builds, testing, deployments,
+                and many DevOps tasks.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="installation">
+    <h2>2. Jenkins Installation</h2>
+
+    <p>
+        Jenkins can be installed on Linux, Windows, macOS, or run
+        inside a Docker container.
+    </p>
+
+    <h3>Run Jenkins with Docker</h3>
+
+    <pre>
+```
+
+docker pull jenkins/jenkins:lts
+
+docker run -d 
+--name jenkins 
+-p 8080:8080 
+-p 50000:50000 
+jenkins/jenkins:lts </pre>
+
+```
+    <p>
+        After starting Jenkins, open your browser and navigate to:
+    </p>
+
+    <pre>
+```
+
+http://localhost:8080 </pre>
+
+```
+    <p>
+        Jenkins will display an initial setup screen where you can
+        unlock Jenkins and create the administrator account.
+    </p>
+</section>
+
+<section id="pipeline">
+    <h2>3. Jenkins Pipeline</h2>
+
+    <p>
+        A Jenkins Pipeline defines the steps Jenkins should execute
+        to build, test, and deploy an application.
+    </p>
+
+    <h3>Example Jenkinsfile</h3>
+
+    <pre>
+```
+
+pipeline {
+agent any
+
+```
+stages {
+
+    stage('Build') {
+        steps {
+            echo 'Building application...'
+        }
+    }
+
+    stage('Test') {
+        steps {
+            echo 'Running tests...'
+        }
+    }
+
+    stage('Deploy') {
+        steps {
+            echo 'Deploying application...'
+        }
+    }
+}
+```
+
+} </pre>
+
+```
+    <p>
+        The pipeline contains three stages:
+    </p>
+
+    <ul>
+        <li>Build</li>
+        <li>Test</li>
+        <li>Deploy</li>
+    </ul>
+</section>
+
+<section id="docker">
+    <h2>4. Jenkins and Docker</h2>
+
+    <p>
+        Jenkins can be integrated with Docker to build Docker images
+        and run containers as part of a CI/CD pipeline.
+    </p>
+
+    <h3>Example Docker Commands</h3>
+
+    <pre>
+```
+
+docker build -t my-app .
+
+docker run -d 
+--name my-app-container 
+-p 8080:80 
+my-app </pre>
+
+```
+    <p>
+        A Jenkins pipeline can execute these commands automatically
+        after code is pushed to GitHub.
+    </p>
+</section>
+
+<section id="commands">
+    <h2>5. Useful Jenkins Concepts</h2>
+
+    <div class="card-container">
+
+        <div class="card">
+            <h3>Job</h3>
+            <p>
+                A Jenkins job defines a task Jenkins should perform.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Pipeline</h3>
+            <p>
+                A pipeline defines an automated workflow for building,
+                testing, and deploying software.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Agent</h3>
+            <p>
+                An agent is a machine or environment where Jenkins
+                executes tasks.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Jenkinsfile</h3>
+            <p>
+                A text file that stores the pipeline configuration
+                as code.
+            </p>
+        </div>
+
+    </div>
+
+    <h3>Common Docker Commands for Jenkins</h3>
+
+    <pre>
+```
+
+docker ps
+
+docker images
+
+docker logs jenkins
+
+docker stop jenkins
+
+docker start jenkins
+
+docker restart jenkins
+
+docker rm jenkins </pre> </section>
+
+```
+<section>
+    <h2>6. Typical CI/CD Workflow</h2>
+
+    <ol>
+        <li>Developer writes code.</li>
+        <li>Code is pushed to GitHub.</li>
+        <li>Jenkins detects the change.</li>
+        <li>Jenkins builds the application.</li>
+        <li>Automated tests are executed.</li>
+        <li>Docker image is built.</li>
+        <li>Application is deployed.</li>
+    </ol>
+</section>
+
+<section>
+    <h2>7. Jenkins Best Practices</h2>
+
+    <ul>
+        <li>Store pipeline configuration in a Jenkinsfile.</li>
+        <li>Keep Jenkins credentials secure.</li>
+        <li>Use version control such as GitHub.</li>
+        <li>Automate testing before deployment.</li>
+        <li>Use Docker to provide consistent build environments.</li>
+        <li>Monitor Jenkins jobs and build results.</li>
+    </ul>
+</section>
+```
+
+</div>
+
+<footer>
+    <p>Jenkins Documentation | DevOps Learning Project</p>
+</footer>
+
+</body>
+</html>
