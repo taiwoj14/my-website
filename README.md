@@ -34,15 +34,23 @@ my-website/
 
 ## Dockerfile
 
-The Dockerfile uses Nginx as the base image and copies the website into Nginx's default web directory.
+The Dockerfile uses Ubuntu 24.04 as the base image. It updates the Ubuntu packages, installs Nginx, copies the HTML page to the Nginx web directory, exposes port 80, and starts Nginx in the foreground.
 
-```dockerfile
-FROM nginx:latest
+FROM ubuntu:24.04
 
-COPY index.html /usr/share/nginx/html/index.html
+# Update packages and install Nginx
+RUN apt-get update && \
+    apt-get install -y nginx && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
+# Copy your HTML page to Nginx's web directory
+COPY index.html /var/www/html/index.html
+
+# Nginx listens on port 80
 EXPOSE 80
 
+# Start Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
@@ -92,7 +100,7 @@ To enter the running container:
 docker exec -it my-web bash
 ```
 
-iCheck the Nginx version:
+Check the Nginx version:
 
 ```bash
 nginx -v
